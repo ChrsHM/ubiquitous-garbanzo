@@ -1,0 +1,37 @@
+using System;
+
+public class Program
+{
+    static public void Main (){
+		
+
+        Random rd = new Random();
+
+        int num1 = rd.Next(0, 101);
+        int num2 = rd.Next(0, 101 - num1);
+        int num3 = 100 - num1 - num2;
+
+        Console.WriteLine("Número 1: " + num1);
+        ImprimirEmoticono(":3 ", num1);
+
+        Console.WriteLine("\nNúmero 2: " + num2);
+        ImprimirEmoticono(":D ", num2);
+
+        Console.WriteLine("\nNúmero 3: " + num3);
+        ImprimirEmoticono("XD ", num3);
+
+        Console.WriteLine("\nSuma: " + (num1 + num2 + num3));
+    }
+
+    static void ImprimirEmoticono(string emoji, int cantidad)
+    {
+        for (int i = 0; i < cantidad; i++)
+        {
+            Console.Write(emoji);
+        }
+        Console.WriteLine();
+    }
+}
+	
+        
+
