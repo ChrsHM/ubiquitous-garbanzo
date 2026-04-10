@@ -1,0 +1,122 @@
+using System;
+
+public class Program
+{
+    static public void Main (){
+		int opcion;
+		
+		do{
+			Console.WriteLine("******************************");
+			Console.WriteLine("             MENU             ");
+			Console.WriteLine("1. Potencia");
+			Console.WriteLine("2. Km a Metros");
+			Console.WriteLine("3. Pesos a Dolares(billullos pues $$$)");
+			Console.WriteLine("4. Celsius a Farenheit");
+			Console.WriteLine("5. Ordenar Numeros");
+			Console.WriteLine("6. FizzBuzz");
+			Console.WriteLine("0. Salir");
+			opcion=Convert.ToInt32(Console.ReadLine());
+			
+			switch(opcion){
+				case 1:
+				   Console.WriteLine("Ingrese su numero para convertir en potencia");
+				   double  num =Convert.ToDouble(Console.ReadLine());
+				   Console.WriteLine("Numero: "+num);
+				   double expo =Convert.ToDouble(Console.ReadLine());
+				   Console.WriteLine("Ingrese su exponente "+expo);
+				   Console.WriteLine("Resultado: " +Math.Pow(num,expo));
+				break;
+				
+			
+		       case 2:
+			       Console.WriteLine("Ingrese sus Km que desea convertir a metros");
+			       double  km =Convert.ToDouble(Console.ReadLine());
+			       Console.WriteLine("Kilometros: " +km);
+			       Console.WriteLine("Sus Km son equivalente a: "+(km*1000)+" metros");
+			   break;
+			   
+			   case 3:
+                  Console.Write("Pesos: ");
+                  double pesos = Convert.ToDouble(Console.ReadLine());
+                  double dolar = 17.0;
+                  Console.WriteLine("Dólares: " + (pesos / dolar));
+              break;
+			  
+			    case 4:
+                    Console.Write("Celsius: ");
+                    double c = Convert.ToDouble(Console.ReadLine());
+                    double f = (c * 9 / 5) + 32;
+                    Console.WriteLine("Fahrenheit: " + f);
+                    break;
+				case 5:
+				     
+				    Console.Write("Cantidad de numeros");
+					int  a, b,c temp;
+
+                  Console.Write("Ingresa el primer número: ");
+                  a = int.Parse(Console.ReadLine());
+
+                  Console.Write("Ingresa el segundo número: ");
+                  b = int.Parse(Console.ReadLine());
+
+                  Console.Write("Ingresa el tercer número: ");
+                  c = int.Parse(Console.ReadLine());
+
+                  if (a > b){
+                  temp = a;
+                  a = b;
+                  b = temp;
+                  }
+
+                  if (a > c){
+                    temp = a;
+                    a = c;
+                    c = temp;
+                  }
+		          if (b > c){
+                   temp = b;
+                   b = c;
+                   c = temp;
+                 }
+
+                 Console.WriteLine("Números ordenados de menor a mayor:");
+                 Console.WriteLine(a + ", " + b + ", " + c);
+				 
+				 
+				 case 6:
+				 
+				 for(int i=0; i<=100;i++){
+			if(i%15==0){
+				Console.WriteLine("FizzBuz");
+			} else if(i%5==0){
+				Console.WriteLine("buz");{
+					
+				} else if (i%3==0){
+					Console.WriteLine("Fizz");{
+						
+					}else
+					{ Console.WriteLine(i);}
+				}
+			}
+		
+			
+		}
+			case 0:
+                    Console.WriteLine("Saliendo...");
+                    break;
+
+                default:
+                    Console.WriteLine("Opción inválida");
+                    break;   
+			   
+			 }
+		
+			
+		}while(opcion!=0);
+		
+	
+		
+	
+        
+    }
+}
