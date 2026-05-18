@@ -1,0 +1,150 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        string respuesta = "si";
+
+        while (respuesta == "si")
+        {
+            Console.WriteLine();
+            Console.WriteLine("==JUEGO DEL AHORCADO==");
+            Console.WriteLine();
+
+            Console.Write("Jugador 1, escribe la palabra secreta: ");
+            string palabra = Console.ReadLine().ToUpper();
+
+            char[] mostrar = new char[palabra.Length];
+
+            for (int i = 0; i < mostrar.Length; i++)
+            {
+                mostrar[i] = '_';
+            }
+
+            List<char> usadas = new List<char>();
+
+            int vidas = 6;
+            bool gano = false;
+
+            while (vidas > 0 && gano == false)
+            {
+                Console.WriteLine();
+                Console.WriteLine();
+
+                // Mostrar palabra
+                foreach (char letra in mostrar)
+                {
+                    Console.Write(letra + " ");
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("Vidas: " + vidas);
+
+                // Mostrar letras usadas
+                Console.Write("Letras usadas: ");
+
+                foreach (char letra in usadas)
+                {
+                    Console.Write(letra + " ");
+                }
+
+                Console.WriteLine();
+                Console.WriteLine();
+
+                Console.Write("Escribe una letra: ");
+                string entrada = Console.ReadLine().ToUpper();
+
+                // Validar vacío
+                if (entrada == "")
+                {
+                    Console.WriteLine("Escribe una letra");
+                    continue;
+                }
+
+                // Validar una sola letra
+                if (entrada.Length > 1)
+                {
+                    Console.WriteLine("Escribe solo una letra");
+                    continue;
+                }
+
+                char intento = entrada[0];
+
+                // Verificar repetida
+                if (usadas.Contains(intento))
+                {
+                    Console.WriteLine("Esa letra ya fue usada, escribe otra letra");
+                    continue;
+                }
+
+                usadas.Add(intento);
+
+                bool encontrada = false;
+
+                // Buscar letra
+                for (int i = 0; i < palabra.Length; i++)
+                {
+                    if (palabra[i] == intento)
+                    {
+                        mostrar[i] = intento;
+                        encontrada = true;
+                    }
+                }
+
+                // Si falla
+                if (encontrada == false)
+                {
+                    vidas--;
+
+                    // Solo mostrar mensaje si sigue vivo
+                    if (vidas > 0)
+                    {
+                        Console.WriteLine("Letra incorrecta, escribe otra letra");
+                    }
+                }
+
+                // Verificar si ganó
+                gano = true;
+
+                for (int i = 0; i < mostrar.Length; i++)
+                {
+                    if (mostrar[i] == '_')
+                    {
+                        gano = false;
+                    }
+                }
+
+                // Si aún no gana ni pierde
+                if (vidas > 0 && gano == false)
+                {
+                    Console.WriteLine("Escribe otra letra");
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            // Resultado final
+            if (gano == true)
+            {
+                Console.WriteLine("GANASTE WIIIII !!");
+                Console.WriteLine();
+                Console.WriteLine("La palabra completa eeeesss:");
+                Console.WriteLine(palabra);
+            }
+            else
+            {
+                Console.WriteLine("PERDISTE");
+                Console.WriteLine();
+                Console.WriteLine("La palabra era:");
+                Console.WriteLine(palabra);
+            }
+
+            Console.WriteLine();
+            Console.Write("Quieres jugar de nuevo? (si/no): ");
+            respuesta = Console.ReadLine();
+        }
+    }
+}
